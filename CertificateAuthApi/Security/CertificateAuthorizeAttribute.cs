@@ -76,29 +76,27 @@ namespace CertificateAuthApi.Security
                 return false;
             }
 
-            // Validate thumbprint
-            if (!certificate.Thumbprint.Equals(trustedCertificate.Thumbprint, StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            // Optionally check issuer and subject if needed
-            if (!certificate.Issuer.Equals(trustedCertificate.Issuer, StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-            if (!certificate.Subject.Equals(trustedCertificate.Subject, StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            // Check not before and not after dates to ensure the certificate is valid
             if (DateTime.Now < certificate.NotBefore || DateTime.Now > certificate.NotAfter)
             {
                 return false;
             }
 
-            return true;
+            X509Chain chain = new X509Chain();
+            chain.ChainPolicy.ExtraStore.Add(trustedCertificate);
+            chain.ChainPolicy.VerificationFlags = X509VerificationFlags.AllowUnknownCertificateAuthority;
+            chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+            chain.ChainPolicy.RevocationFlag = X509RevocationFlag.ExcludeRoot;
+            bool isChainValid = chain.Build(certificate);
+            if (!isChainValid)
+            {
+                return false;
+            }
+
+            var isValid = chain
+                        .ChainElements
+                        .Cast<X509ChainElement>().Any(x => 
+                            x.Certificate.Thumbprint == trustedCertificate.Thumbprint);
+            return isValid;
         }
 
     }
