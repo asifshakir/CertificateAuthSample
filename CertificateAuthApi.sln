@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateAuthApi", "Certi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateAuthClient", "CertificateAuthClient\CertificateAuthClient.csproj", "{E37774B4-AFDC-490A-A3C1-8BA77D7444F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Certificates", "Certificates", "{C9436B60-47D3-4CD6-B5A3-81F6D5D5FAAA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Certificates", "Certificates", "{7727C263-C173-45DA-BD9B-98BC6331DDC1}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\Temp\DemoBankCertificate.cer = ..\..\..\..\..\Temp\DemoBankCertificate.cer
-		..\..\..\..\..\Temp\DemoBankCertificate.pfx = ..\..\..\..\..\Temp\DemoBankCertificate.pfx
-		..\..\..\Desktop\Generate-Certificates.ps1 = ..\..\..\Desktop\Generate-Certificates.ps1
+		Certificates\DemoBankCertificate.cer = Certificates\DemoBankCertificate.cer
+		Certificates\DemoBankCertificate.pfx = Certificates\DemoBankCertificate.pfx
+		Certificates\Generate-Certificates.ps1 = Certificates\Generate-Certificates.ps1
 	EndProjectSection
 EndProject
 Global
