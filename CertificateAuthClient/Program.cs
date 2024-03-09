@@ -14,7 +14,6 @@ namespace CertificateAuthClient
             var certificate = new X509Certificate2(certificatePath);
             string certBase64 = Convert.ToBase64String(certificate.GetRawCertData());
             var client = new HttpClient();
-            certBase64 = "";
             client.DefaultRequestHeaders.Add("X-Certificate", certBase64);
             var response = client.GetAsync(url).Result;
             var content = response.Content.ReadAsStringAsync().Result;
