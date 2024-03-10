@@ -11,7 +11,7 @@ namespace CertificateAuthApi
 
             // Change this to True for Release Deployments
             // Change this to False for Development
-            bool protectSettings = true;
+            bool protectSettings = false;
 
             var config = WebConfigurationManager.OpenWebConfiguration("~/");
             var section = config.GetSection("appSettings");
